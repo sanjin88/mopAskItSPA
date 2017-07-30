@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as RegistrationActions from '../actions/registration-actions';
 import '../styles/registration.css';
+
+import _ from 'lodash';
+
 class Registration extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             fieldValues: {
                 firstName: '',
@@ -18,33 +23,53 @@ class Registration extends Component {
                 email: '',
                 password: ''
             }
+
         }
     }
+
     handleChange(e) {
         this.setState({
             fieldValues: Object.assign({}, this.state.fieldValues, { [e.target.name]: e.target.value })
         })
     }
+
     handleSubmit(event) {
         event.preventDefault();
+
         let values = Object.keys(this.state.fieldValues);
+
+
         let errors = {};
         values.forEach((key) => {
             if (!this.state.fieldValues[key]) {
                 errors[key] = "Required field";
             }
         });
+
         if (this.state.fieldValues.password && this.state.fieldValues.password.length < 3) {
             errors.password = "Your password should be minimum 5 characters";
         }
+
+
         this.setState({
             fieldErrors: errors
+        }, () => {
+            const { registerUser } = this.props.action;
+
+            if (_.isEmpty(this.state.fieldErrors)) {
+                registerUser();
+            }
         });
     }
-    render() {
-        return (
-            <div className="registration">
-                <h2>Registration:</h2>
+
+    renderFormState() {
+
+        if (this.props.registration.isInProgress) {
+            return (
+                <div>Registering User...</div>
+            )
+        } else {
+            return (
                 <div className="registration-fields">
                     <form onSubmit={(e) => this.handleSubmit(e)}>
                         <div className="field-group">
@@ -72,8 +97,31 @@ class Registration extends Component {
                         </div>
                     </form>
                 </div>
+            )
+        }
+    }
+
+    render() {
+        return (
+            <div className="registration">
+                <h2>Registration:</h2>
+
+                {this.renderFormState()}
             </div>
         );
     }
 }
-export default Registration;
+
+function mapStateToProps(state, props) {
+    return {
+        registration: state.registration
+    };
+}
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+        action: bindActionCreators(RegistrationActions, dispatch)
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
