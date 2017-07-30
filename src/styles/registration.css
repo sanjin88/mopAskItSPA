@@ -1,0 +1,14 @@
+.registration {
+    margin: auto;
+}
+.registration .registration-fields {
+    background: blue;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.registration .registration-fields .field-group {
+    padding: 10px;
+}

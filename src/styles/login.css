@@ -1,0 +1,14 @@
+.login {
+    margin: auto;
+}
+.login .login-fields {
+    background: green;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.login .login-fields .field-group {
+    padding: 10px;
+}
