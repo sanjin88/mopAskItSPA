@@ -6,7 +6,9 @@ export default(state = initialState, payload) => {
         case 'REGISTRATION_IN_PROGRESS':
             return Object.assign({}, state, {isInProgress: true});
         case 'HANDLE_REGISTER_SUCCESS':
-            return Object.assign({}, state, {isInProgress: false});
+            // save token here
+            localStorage.setItem('id_token', 'fefeafea');
+            return Object.assign({}, state, { isInProgress: false });
         default:
             return state;
     }
