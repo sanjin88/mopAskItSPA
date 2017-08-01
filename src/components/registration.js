@@ -70,33 +70,22 @@ class Registration extends Component {
             )
         } else {
             return (
-                <div className="registration-fields">
-                    <form onSubmit={(e) => this.handleSubmit(e)}>
-                        <div className="field-group">
-                            <label htmlFor="firstName">First Name</label>
-                            <input type="text" name="firstName" value={this.state.firstName} onChange={(e) => this.handleChange(e)} />
+
+<div className="login-page">
+  <div className="form">
+    <form className="login-form" onSubmit={(e) => this.handleSubmit(e)}>
+      <input type="text" placeholder="First name" name="firstName" value={this.state.firstName} onChange={(e) => this.handleChange(e)} />
                             {this.state.fieldErrors['firstName'] ? this.state.fieldErrors['firstName'] : ''}
-                        </div>
-                        <div className="field-group">
-                            <label htmlFor="lastName">Last Name</label>
-                            <input type="text" name="lastName" value={this.state.lastName} onChange={(e) => this.handleChange(e)} />
+             <input type="text" placeholder="Last name" name="lastName" value={this.state.lastName} onChange={(e) => this.handleChange(e)} />
                             {this.state.fieldErrors['lastName'] ? this.state.fieldErrors['lastName'] : ''}
-                        </div>
-                        <div className="field-group">
-                            <label htmlFor="email">Email</label>
-                            <input type="text" name="email" value={this.state.email} onChange={(e) => this.handleChange(e)} />
+             <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={(e) => this.handleChange(e)} />
                             {this.state.fieldErrors['email'] ? this.state.fieldErrors['email'] : ''}
-                        </div>
-                        <div className="field-group">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" name="password" value={this.state.password} onChange={(e) => this.handleChange(e)} />
-                            {this.state.fieldErrors['password'] ? this.state.fieldErrors['password'] : ''}
-                        </div>
-                        <div className="field-group">
-                            <input type="submit" value="Submit" />
-                        </div>
-                    </form>
-                </div>
+      <input type="password" placeholder="Password"name="password" value={this.state.password} onChange={(e) => this.handleChange(e)} />
+       {this.state.fieldErrors['password'] ? this.state.fieldErrors['password'] : ''}
+      <button type="submit" value="Submit" >Register</button>
+    </form>
+  </div>
+</div>
             )
         }
     }
@@ -104,8 +93,6 @@ class Registration extends Component {
     render() {
         return (
             <div className="registration">
-                <h2>Registration:</h2>
-
                 {this.renderFormState()}
             </div>
         );

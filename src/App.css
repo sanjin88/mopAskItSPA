@@ -1,4 +1,14 @@
-.App {
-  text-align: center;
-  display: flex;
+nav .active{
+  font-size: 20px;
+}
+
+
+.card button{
+  margin: 5px;
+}
+
+
+
+.card .response .response-author{
+text-align: right;
 }

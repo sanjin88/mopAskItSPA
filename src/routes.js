@@ -28,12 +28,13 @@ const Routes = (props) => {
 
     return (
         <Router {...props}>
-            <Route path="/" component={App}>
+                <Route path="/" component={App}>
+                <IndexRoute component={Questions} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/my-questions" component={MyQuestions} />
-                 <Route path="/questions" component={Questions} />
-                     <Route path="/login" component={Login} />
-            <Route path="/registration" component={Registration} />
+                <Route path="/questions" component={Questions} />
+                <Route path="/login" component={Login} />
+                <Route path="/registration" component={Registration} />
             </Route>
         
 
