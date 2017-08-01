@@ -57,7 +57,7 @@ class Registration extends Component {
             const { registerUser } = this.props.action;
 
             if (_.isEmpty(this.state.fieldErrors)) {
-                registerUser();
+                registerUser(this.state.fieldValues);
             }
         });
     }
@@ -89,7 +89,7 @@ class Registration extends Component {
                         </div>
                         <div className="field-group">
                             <label htmlFor="password">Password</label>
-                            <input type="text" name="password" value={this.state.password} onChange={(e) => this.handleChange(e)} />
+                            <input type="password" name="password" value={this.state.password} onChange={(e) => this.handleChange(e)} />
                             {this.state.fieldErrors['password'] ? this.state.fieldErrors['password'] : ''}
                         </div>
                         <div className="field-group">

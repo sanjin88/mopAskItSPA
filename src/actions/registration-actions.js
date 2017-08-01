@@ -1,13 +1,27 @@
-import { browserHistory } from 'react-router'
+import {
+    browserHistory
+} from 'react-router'
+import axios from 'axios'
 
 export function registerUser(data) {
     console.log('registration called:');
-    return function(dispatch) {
-        dispatch(registrationInProgress());
-        setTimeout(function() {
-            dispatch(handleUserRegisterSuccess());
+
+
+    return function (dispatch) {
+            dispatch(registrationInProgress());
+        axios.post("/users", {
+            Email: data.email,
+            Firstname: data.firstName,
+            Lastname: data.lastName,
+            Password: data.password
+        }).then(function (response) {
+            console.log(response)
+            dispatch(handleUserRegisterSuccess());        
             browserHistory.push('/login')
-        }, 3000);
+        }).catch(function (err) {
+            console.log(err)
+        })
+
     };
 }
 

@@ -4,7 +4,9 @@ import { Router, Route, IndexRoute } from 'react-router';
 import App from './App';
 import Login from './components/login';
 import Registration from './components/registration';
-
+import Profile from './components/profile';
+import MyQuestions from './components/my-questions';
+import Questions from './components/questions';
 import store from './store';
 
 const StoreInstance = store();
@@ -26,11 +28,15 @@ const Routes = (props) => {
 
     return (
         <Router {...props}>
-            <Route path="/">
-                <IndexRoute component={App} onEnter={requireAuthentication} />
-                <Route path="/login" component={Login} />
-                <Route path="/registration" component={Registration} />
+            <Route path="/" component={App}>
+                <Route path="/profile" component={Profile} />
+                <Route path="/my-questions" component={MyQuestions} />
+                 <Route path="/questions" component={Questions} />
+                     <Route path="/login" component={Login} />
+            <Route path="/registration" component={Registration} />
             </Route>
+        
+
         </Router>
     )
 };

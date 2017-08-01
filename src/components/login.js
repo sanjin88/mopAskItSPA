@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import * as LoginActions from '../actions/login-actions';
 import '../styles/login.css';
 
 class Login extends Component {
@@ -45,8 +49,9 @@ class Login extends Component {
         this.setState({
             fieldErrors: errors
         });
+
         
-        // this.props.actions.loginUser(this.state.fieldValues)
+        this.props.action.loginUser(this.state.fieldValues)
 
     }
 
@@ -78,4 +83,11 @@ class Login extends Component {
 }
 
 
-export default Login;
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+        action: bindActionCreators(LoginActions, dispatch)
+    }
+}
+export default connect(null, mapDispatchToProps)(Login);
